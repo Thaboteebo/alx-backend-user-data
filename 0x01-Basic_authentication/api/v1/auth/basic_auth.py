@@ -32,8 +32,16 @@ class BasicAuth(Auth):
             return None
         return decoded_base64
 
-    def extract_user_credentials(self, decoded_base64_authorization_header: str) -> (str, str)
+    def extract_user_credentials(self, decoded_base64_authorization_header: str) -> (str, str):
     """doc doc doc"""
+    if not deocded_base64_authorization_header:
+        return None
+    if not isinstance(decoded_base64_authorization_header, str):
+        return None
+    if ":" not in decoded_base64_authorization_header:
+        return None
+    user, pwd= decoded_base64_authorization_header.split(':')
+    return user, pwd
 
     if __name__ == "__main__":
         a = BasicAuth()
